@@ -15,14 +15,21 @@
             <th>Name</th>
             <th>Surface Area</th>
             <th>Base Material</th>
+            <!-- <th>Coating</th> -->
         </tr>
         <tr th:each="part : ${parts}">
             <td th:text="${part.partId}"></td>
             <td th:text="${part.name}"></td>
             <td th:text="${part.surfaceArea}"></td>
             <td th:text="${part.baseMaterial}"></td>
+            <td><a th:href="@{/deletepart/{id}(id=${part.partId})}">Delete</a></td>
+            <td><a th:href="@{/editpart/{id}(id=${part.partId})}">Edit</a></td>
         </tr>
     </table>
+    <br>
+    <a href="/addpart">Add a part</a>
+    <a href="/index">Home</a>
+    </br>
 </body>
 
 </html>

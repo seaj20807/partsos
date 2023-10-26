@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head>
+    <title>PartsOS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<body>
+    <h1>Add a part</h1>
+    <div>
+        <form th:object="${part}" th:action="@{/savepart}" action="#" method="post">
+            <label for="id">Id:</label><br>
+            <input type="text" id="id" th:field="*{partId}" /><br>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" th:field="*{name}" /><br>
+            <label for="srfcarea">Surface Area:</label><br>
+            <input type="text" id="srfcarea" th:field="*{surfaceArea}" /><br>
+            <label for="basemtrl">Base Material:</label><br>
+            <input type="text" id="basemtrl" th:field="*{baseMaterial}" /><br>
+            <input type="submit" value="Save"></input>
+        </form>
+        <a href="/partlist">Back</a>
+        <a href="/index">Home</a>
+    </div>
+</body>
+
+</html>
