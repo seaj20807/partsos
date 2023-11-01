@@ -2,6 +2,8 @@ package seaj.partsos.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Part {
@@ -12,6 +14,10 @@ public class Part {
     private Double surfaceArea;
     private String baseMaterial;
 
+    @ManyToOne
+    @JoinColumn(name = "coatingId")
+    private Coating coating;
+
     public Part() {
     }
 
@@ -20,6 +26,14 @@ public class Part {
         this.name = name;
         this.surfaceArea = surfaceArea;
         this.baseMaterial = baseMaterial;
+    }
+
+    public Part(String partId, String name, Double surfaceArea, String baseMaterial, Coating coating) {
+        this.partId = partId;
+        this.name = name;
+        this.surfaceArea = surfaceArea;
+        this.baseMaterial = baseMaterial;
+        this.coating = coating;
     }
 
     public String getPartId() {
@@ -38,6 +52,10 @@ public class Part {
         return baseMaterial;
     }
 
+    public Coating getCoating() {
+        return coating;
+    }
+
     public void setPartId(String partId) {
         this.partId = partId;
     }
@@ -52,6 +70,10 @@ public class Part {
 
     public void setBaseMaterial(String baseMaterial) {
         this.baseMaterial = baseMaterial;
+    }
+
+    public void setCoating(Coating coating) {
+        this.coating = coating;
     }
 
     @Override

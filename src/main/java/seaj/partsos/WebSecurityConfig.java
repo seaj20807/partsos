@@ -28,7 +28,7 @@ public class WebSecurityConfig {
                         .requestMatchers(antMatcher("/css/**")).permitAll()
                         .anyRequest().authenticated())
                 .formLogin(formlogin -> formlogin
-                        // .loginPage("/login")
+                        .loginPage("/login")
                         .defaultSuccessUrl("/index", true)
                         .permitAll())
                 .logout(logout -> logout

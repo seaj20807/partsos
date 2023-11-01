@@ -17,12 +17,6 @@ public class PartController {
     @Autowired
     private PartRepository partRepository;
 
-    // Front page
-    @GetMapping("/index")
-    public String index() {
-        return "index"; // index.html
-    }
-
     // Parts listing
     @GetMapping("/partlist")
     public String partList(Model model) {
@@ -55,7 +49,7 @@ public class PartController {
     @GetMapping("/deletepart/{partId}")
     public String deletePart(@PathVariable("partId") String partId, Model model) {
         partRepository.deleteById(partId);
-        return "redirect:/partlist"; // partlist.html
+        return "redirect:/partlist"; // Redirect to endpoint /partlist.html
     }
 
 }

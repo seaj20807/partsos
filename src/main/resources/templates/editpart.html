@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h1>Add a part</h1>
+    <h1>Edit a part</h1>
     <div>
         <form th:object="${part}" th:action="@{/savepart}" action="#" method="post">
             <label for="id">Id:</label><br>
@@ -19,10 +19,17 @@
             <input type="text" id="srfcarea" th:field="*{surfaceArea}" /><br>
             <label for="basemtrl">Base Material:</label><br>
             <input type="text" id="basemtrl" th:field="*{baseMaterial}" /><br>
-            <input type="submit" value="Save"></input>
+            <label for="coatinglist">Coating:</label>
+            <select id="coatinglist" th:field="*{coating}" class="form-control">
+                <option th:each="coating : ${coatings}" th:value="${coating.coatingId}" th:text="${coating.material}">
+                </option>
+            </select>
+            <input type="submit" value="Save" class="btn btn-success"></input><br>
+            <br>
         </form>
-        <a href="/partlist">Back</a>
-        <a href="/index">Home</a>
+        <a href="/partlist" class="btn btn-danger">Back</a><br>
+        <br>
+        <a href="/index" class="btn btn-danger">Home</a>
     </div>
 </body>
 
