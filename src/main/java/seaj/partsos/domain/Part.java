@@ -1,5 +1,7 @@
 package seaj.partsos.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -15,6 +17,7 @@ public class Part {
     private String baseMaterial;
 
     @ManyToOne
+    @JsonIgnoreProperties("parts")
     @JoinColumn(name = "coatingId")
     private Coating coating;
 

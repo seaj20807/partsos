@@ -21,7 +21,8 @@
             <input type="text" id="basemtrl" th:field="*{baseMaterial}" /><br>
             <label for="coatinglist">Coating:</label>
             <select id="coatinglist" th:field="*{coating}" class="form-control">
-                <option th:each="coating : ${coatings}" th:value="${coating.coatingId}" th:text="${coating.material}">
+                <option th:each="coating : ${coatings}" th:value="${coating.coatingId}"
+                    th:text="${coating.material} + ' ' + ${coating.thickness}">
                 </option>
             </select>
             <input type="submit" value="Save" class="btn btn-success"></input><br>

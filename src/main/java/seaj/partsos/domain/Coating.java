@@ -50,6 +50,10 @@ public class Coating {
         return thickness;
     }
 
+    public List<Part> getParts() {
+        return parts;
+    }
+
     public void setCoatingId(Long coatingId) {
         this.coatingId = coatingId;
     }
@@ -60,6 +64,10 @@ public class Coating {
 
     public void setThickness(Double thickness) {
         this.thickness = thickness;
+    }
+
+    public void setParts(List<Part> parts) {
+        this.parts = parts;
     }
 
     @Override
