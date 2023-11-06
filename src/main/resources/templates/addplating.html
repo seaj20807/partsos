@@ -8,17 +8,17 @@
 </head>
 
 <body>
-    <h1>Add a coating</h1>
+    <h1>Add a plating</h1>
     <div>
-        <form th:object="${coating}" th:action="@{/savecoating}" action="#" method="post">
-            <label for="material">Material:</label><br>
-            <input type="text" id="material" th:field="*{material}" /><br>
-            <label for="thickness">Thickness:</label><br>
-            <input type="text" id="srfcarea" th:field="*{thickness}" /><br>
+        <form th:object="${plating}" th:action="@{/saveplating}" action="#" method="post">
+            <label for="chemsymbol">Chemical Symbol:</label><br>
+            <input type="text" id="chemsymbol" th:field="*{platingId}" /><br>
+            <label for="platemtrl">Material Name:</label><br>
+            <input type="text" id="platemtrl" th:field="*{platingMaterial}" /><br>
             <input type="submit" value="Add" class="btn btn-success" /><br>
             <br>
         </form>
-        <a href="/coatinglist" class="btn btn-danger">Back</a><br>
+        <a href="/platinglist" class="btn btn-danger">Back</a><br>
         <br>
         <a href="/index" class="btn btn-danger">Home</a>
     </div>

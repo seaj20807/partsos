@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head>
+    <title>PartsOS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<body>
+    <h1>Platings</h1>
+    <table class="table table-striped">
+        <tr>
+            <!-- <th>Id</th> -->
+            <th>Chemical Symbol</th>
+            <th>Material Name</th>
+        </tr>
+        <tr th:each="plating : ${platings}">
+            <td th:text="${plating.platingId}"></td>
+            <td th:text="${plating.platingMaterial}"></td>
+            <td><a th:href="@{/editplating/{id}(id=${plating.platingId})}" class="btn btn-success">Edit</a></td>
+        </tr>
+    </table>
+    <br>
+    <a href="/addplating" class="btn btn-success">Add a plating</a><br>
+    <br>
+    <a href="/index" class="btn btn-danger">Home</a>
+    </br>
+</body>
+
+</html>

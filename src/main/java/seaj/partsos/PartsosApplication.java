@@ -7,8 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import seaj.partsos.domain.Coating;
-import seaj.partsos.domain.CoatingRepository;
+import seaj.partsos.domain.Plating;
+import seaj.partsos.domain.PlatingRepository;
 import seaj.partsos.domain.Part;
 import seaj.partsos.domain.PartRepository;
 import seaj.partsos.domain.User;
@@ -24,22 +24,22 @@ public class PartsosApplication {
 	}
 
 	@Bean
-	public CommandLineRunner partDemo(PartRepository partRepository, CoatingRepository coatingRepository,
+	public CommandLineRunner partDemo(PartRepository partRepository, PlatingRepository platingRepository,
 			UserRepository userRepository) {
 		return (args) -> {
-			log.info("Create and save exaple coatings");
-			Coating coating1 = new Coating("Gold", 2.5);
-			Coating coating2 = new Coating("Silver", 2.5);
-			Coating coating3 = new Coating("Nickel", 5.0);
-			coatingRepository.save(coating1);
-			coatingRepository.save(coating2);
-			coatingRepository.save(coating3);
+			log.info("Create and save exaple platings");
+			Plating plating1 = new Plating("Au", "Gold");
+			Plating plating2 = new Plating("Ag", "Silver");
+			Plating plating3 = new Plating("Ni", "Nickel");
+			platingRepository.save(plating1);
+			platingRepository.save(plating2);
+			platingRepository.save(plating3);
 
 			log.info("Create and save example parts");
-			Part part1 = new Part("A0001", "Cover", 0.55, "Copper", coating1);
-			Part part2 = new Part("A0002", "Processor", 2.52, "Copper", coating1);
-			Part part3 = new Part("A0003", "Cooler", 1.13, "Copper", coating2);
-			Part part4 = new Part("A0004", "Bolt", 0.04, "Brass", coating3);
+			Part part1 = new Part("A0001", "Cover", 0.55, "Copper", plating1);
+			Part part2 = new Part("A0002", "Processor", 2.52, "Copper", plating1);
+			Part part3 = new Part("A0003", "Cooler", 1.13, "Copper", plating2);
+			Part part4 = new Part("A0004", "Bolt", 0.04, "Brass", plating3);
 			partRepository.save(part1);
 			partRepository.save(part2);
 			partRepository.save(part3);

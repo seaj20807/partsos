@@ -19,10 +19,10 @@
             <input type="text" id="srfcarea" th:field="*{surfaceArea}" /><br>
             <label for="basemtrl">Base Material:</label><br>
             <input type="text" id="basemtrl" th:field="*{baseMaterial}" /><br>
-            <label for="coatinglist">Coating:</label>
-            <select id="coatinglist" th:field="*{coating}" class="form-control">
-                <option th:each="coating : ${coatings}" th:value="${coating.coatingId}"
-                    th:text="${coating.material} + ' ' + ${coating.thickness}">
+            <label for="platinglist">Plating:</label>
+            <select id="platinglist" th:field="*{plating}" class="form-control">
+                <option th:each="plating : ${platings}" th:value="${plating.platingId}"
+                    th:text="${plating.platingId} + ', ' + ${plating.platingMaterial}">
                 </option>
             </select>
             <input type="submit" value="Save" class="btn btn-success"></input><br>

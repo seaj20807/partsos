@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import seaj.partsos.domain.CoatingRepository;
+import seaj.partsos.domain.PlatingRepository;
 import seaj.partsos.domain.Part;
 import seaj.partsos.domain.PartRepository;
 
@@ -18,9 +18,9 @@ public class PartController {
     @Autowired
     private PartRepository partRepository;
 
-    // Coatings database
+    // Platings database
     @Autowired
-    private CoatingRepository coatingRepository;
+    private PlatingRepository platingRepository;
 
     // Parts listing
     @GetMapping("/partlist")
@@ -33,7 +33,7 @@ public class PartController {
     @GetMapping("/addpart")
     public String addPart(Model model) {
         model.addAttribute("part", new Part());
-        model.addAttribute("coatings", coatingRepository.findAll());
+        model.addAttribute("platings", platingRepository.findAll());
         return "addpart"; // addpart.html
     }
 
@@ -41,7 +41,7 @@ public class PartController {
     @GetMapping("/editpart/{partId}")
     public String editPart(@PathVariable("partId") String partId, Model model) {
         model.addAttribute("part", partRepository.findById(partId));
-        model.addAttribute("coatings", coatingRepository.findAll());
+        model.addAttribute("platings", platingRepository.findAll());
         return "editpart"; // editpart.html
     }
 
