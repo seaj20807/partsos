@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Part {
@@ -21,8 +21,13 @@ public class Part {
 
     @ManyToOne
     @JsonIgnoreProperties("parts")
-    @JoinColumn(name = "platingId")
-    private Plating plating;
+    @JoinColumn(name = "supplierId")
+    private Supplier supplier;
+
+    @OneToMany(mappedBy = "part")
+    List<Process> processes;
+
+    // private Plating plating;
 
     public Part() {
     }
@@ -34,13 +39,22 @@ public class Part {
         this.baseMaterial = baseMaterial;
     }
 
-    public Part(String partId, String name, Double surfaceArea, String baseMaterial, Plating plating) {
+    public Part(String partId, String name, Double surfaceArea, String baseMaterial, Supplier supplier) {
         this.partId = partId;
         this.name = name;
         this.surfaceArea = surfaceArea;
         this.baseMaterial = baseMaterial;
-        this.plating = plating;
+        this.supplier = supplier;
     }
+
+    // public Part(String partId, String name, Double surfaceArea, String
+    // baseMaterial, Plating plating) {
+    // this.partId = partId;
+    // this.name = name;
+    // this.surfaceArea = surfaceArea;
+    // this.baseMaterial = baseMaterial;
+    // this.plating = plating;
+    // }
 
     public String getPartId() {
         return partId;
@@ -58,9 +72,17 @@ public class Part {
         return baseMaterial;
     }
 
-    public Plating getPlating() {
-        return plating;
+    public Supplier getSupplier() {
+        return supplier;
     }
+
+    public List<Process> getProcesses() {
+        return processes;
+    }
+
+    // public Plating getPlating() {
+    // return plating;
+    // }
 
     public void setPartId(String partId) {
         this.partId = partId;
@@ -78,9 +100,17 @@ public class Part {
         this.baseMaterial = baseMaterial;
     }
 
-    public void setPlating(Plating plating) {
-        this.plating = plating;
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
+
+    public void setProcesses(List<Process> processes) {
+        this.processes = processes;
+    }
+
+    // public void setPlating(Plating plating) {
+    // this.plating = plating;
+    // }
 
     @Override
     public String toString() {

@@ -15,6 +15,7 @@
             <th>Name</th>
             <th>Surface Area</th>
             <th>Base Material</th>
+            <th>Supplier</th>
             <th>Plating</th>
             <th>Material</th>
         </tr>
@@ -23,8 +24,7 @@
             <td th:text="${part.name}"></td>
             <td th:text="${part.surfaceArea}"></td>
             <td th:text="${part.baseMaterial}"></td>
-            <td th:text="${part.plating != null ? part.plating.platingId : ''}"></td>
-            <td th:text="${part.plating != null ? part.plating.platingMaterial : ''}"></td>
+            <td th:text="${part.supplier.name}"></td>
             <td><a th:href="@{/editpart/{id}(id=${part.partId})}" class="btn btn-success">Edit</a></td>
             <td><a th:href="@{/deletepart/{id}(id=${part.partId})}" class="btn btn-danger">Delete</a></td>
         </tr>

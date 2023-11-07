@@ -2,9 +2,6 @@ package seaj.partsos.domain;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -16,9 +13,8 @@ public class Plating {
     private String platingId;
     private String platingMaterial;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "plating")
-    @JsonIgnoreProperties("parts")
-    private List<Part> parts;
+    @OneToMany(mappedBy = "plating")
+    List<Process> processes;
 
     public Plating() {
     }
@@ -28,10 +24,10 @@ public class Plating {
         this.platingMaterial = platingMaterial;
     }
 
-    public Plating(String platingId, String platingMaterial, List<Part> parts) {
+    public Plating(String platingId, String platingMaterial, List<Process> processes) {
         this.platingId = platingId;
         this.platingMaterial = platingMaterial;
-        this.parts = parts;
+        this.processes = processes;
     }
 
     public String getPlatingId() {
@@ -42,8 +38,8 @@ public class Plating {
         return platingMaterial;
     }
 
-    public List<Part> getParts() {
-        return parts;
+    public List<Process> getProcesses() {
+        return processes;
     }
 
     public void setPlatingId(String platingId) {
@@ -54,13 +50,13 @@ public class Plating {
         this.platingMaterial = platingMaterial;
     }
 
-    public void setParts(List<Part> parts) {
-        this.parts = parts;
+    public void setProcesses(List<Process> processes) {
+        this.processes = processes;
     }
 
     @Override
     public String toString() {
-        return "Plating [platingId=" + platingId + ", platingMaterial=" + platingMaterial + ", parts=" + parts + "]";
+        return "Plating [platingId=" + platingId + ", platingMaterial=" + platingMaterial + "]";
     }
 
 }

@@ -13,15 +13,15 @@ import seaj.partsos.domain.PlatingRepository;
 @Controller
 public class PlatingController {
 
-    // platings database
+    // Platings database
     @Autowired
     private PlatingRepository platingRepository;
 
-    // platings listing
-    @GetMapping("/platinglist")
-    public String platingList(Model model) {
+    // Platings listing
+    @GetMapping("/listplatings")
+    public String listplatings(Model model) {
         model.addAttribute("platings", platingRepository.findAll());
-        return "platinglist"; // platinglist.html
+        return "listplatings"; // listplatings.html
     }
 
     // Add a plating
@@ -42,7 +42,7 @@ public class PlatingController {
     @PostMapping("/saveplating")
     public String savePlating(Plating plating) {
         platingRepository.save(plating);
-        return "redirect:/platinglist"; // Redirect to endpoint /platinglist.html
+        return "redirect:/listplatings"; // Redirect to endpoint /listplatings.html
     }
 
 }
