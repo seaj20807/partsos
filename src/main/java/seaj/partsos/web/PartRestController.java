@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import seaj.partsos.domain.PlatingRepository;
 import seaj.partsos.domain.Part;
 import seaj.partsos.domain.PartRepository;
 
@@ -25,10 +24,6 @@ public class PartRestController {
     // Parts database
     @Autowired
     private PartRepository partRepository;
-
-    // Platings database
-    @Autowired
-    private PlatingRepository platingRepository;
 
     // Find a part by its Id, RESTful service
     @GetMapping("/parts/{partId}")

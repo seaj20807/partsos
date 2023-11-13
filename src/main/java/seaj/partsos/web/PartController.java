@@ -1,6 +1,7 @@
 package seaj.partsos.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,6 +55,7 @@ public class PartController {
 
     // Delete an existing part from the database
     @GetMapping("/deletepart/{partId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String deletePart(@PathVariable("partId") String partId, Model model) {
         partRepository.deleteById(partId);
         return "redirect:/listparts"; // Redirect to endpoint /listparts.html

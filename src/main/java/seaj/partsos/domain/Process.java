@@ -27,6 +27,12 @@ public class Process {
     public Process() {
     }
 
+    public Process(Part part, Plating plating, Double thickness) {
+        this.part = part;
+        this.plating = plating;
+        this.thickness = thickness;
+    }
+
     public Process(Long processId, Part part, Plating plating, Double thickness) {
         this.processId = processId;
         this.part = part;

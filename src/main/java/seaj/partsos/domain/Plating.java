@@ -5,12 +5,19 @@ import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Plating {
 
     @Id
+    @NotBlank(message = "Element Symbol is mandatory")
+    @Size(min = 2, max = 3, message = "Element Symbol must be between 2 and 3 characters")
     private String platingId;
+
+    @NotBlank(message = "Plating Material is mandatory")
+    @Size(min = 2, max = 20, message = "Plating Material must be between 2 and 20 characters")
     private String platingMaterial;
 
     @OneToMany(mappedBy = "plating")

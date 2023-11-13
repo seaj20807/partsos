@@ -9,12 +9,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Part {
 
     @Id
+    @NotBlank(message = "Part ID is mandatory")
+    @Size(min = 2, max = 15, message = "Part ID must be between 2 and 15 characters")
     private String partId;
+
+    @NotBlank(message = "Name is mandatory")
+    @Size(min = 2, max = 50, message = "Part ID must be between 2 and 50 characters")
     private String name;
     private Double surfaceArea;
     private String baseMaterial;

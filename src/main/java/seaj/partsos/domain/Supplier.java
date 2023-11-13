@@ -10,6 +10,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Supplier {
@@ -17,9 +20,19 @@ public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long supplierId;
+
+    @NotBlank(message = "Name is mandatory")
+    @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
     private String name;
+
+    @NotBlank(message = "Address is mandatory")
     private String address;
+
+    @NotBlank(message = "Phone is mandatory")
     private String phone;
+
+    @NotBlank(message = "E-Mail is mandatory")
+    @Email(message = "Invalid E-Mail address")
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "supplier")

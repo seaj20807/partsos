@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 
 import seaj.partsos.domain.Plating;
 import seaj.partsos.domain.PlatingRepository;
+import seaj.partsos.domain.Process;
+import seaj.partsos.domain.ProcessRepository;
 import seaj.partsos.domain.Supplier;
 import seaj.partsos.domain.SupplierRepository;
 import seaj.partsos.domain.Part;
@@ -26,7 +28,8 @@ public class PartsosApplication {
 	}
 
 	@Bean
-	public CommandLineRunner partDemo(PartRepository partRepository, PlatingRepository platingRepository,
+	public CommandLineRunner partDemo(PartRepository partRepository, ProcessRepository processRepository,
+			PlatingRepository platingRepository,
 			SupplierRepository supplierRepository,
 			UserRepository userRepository) {
 		return (args) -> {
@@ -58,6 +61,12 @@ public class PartsosApplication {
 			partRepository.save(part2);
 			partRepository.save(part3);
 			partRepository.save(part4);
+
+			log.info("Create and save example processes");
+			Process process1 = new Process(part2, plating2, 2.5);
+			Process process2 = new Process(part2, plating1, 2.5);
+			processRepository.save(process1);
+			processRepository.save(process2);
 
 			log.info("Save users");
 			User user1 = new User("user", "$2a$10$F.BY5Fk2rdPFS2p6vCdh9ON3NCU1yhBLsKBU4ExHgeigBVWkmpb5a", "USER");

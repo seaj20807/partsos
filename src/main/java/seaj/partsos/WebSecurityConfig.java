@@ -10,7 +10,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -21,11 +27,22 @@ public class WebSecurityConfig {
     private UserDetailsService userDetailsService;
 
     @Bean
-    public SecurityFilterChain configure(HttpSecurity http) throws Exception {
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 
+    @Bean
+    public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
+                .cors(cors -> corsConfigurationSource())
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(antMatcher("/css/**")).permitAll()
+                        .requestMatchers(antMatcher("/api/**")).permitAll()
                         .anyRequest().authenticated())
                 .formLogin(formlogin -> formlogin
                         .loginPage("/login")
@@ -33,9 +50,7 @@ public class WebSecurityConfig {
                         .permitAll())
                 .logout(logout -> logout
                         .permitAll());
-
         return http.build();
-
     }
 
     @Autowired
