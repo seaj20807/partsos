@@ -23,39 +23,39 @@ import java.util.Arrays;
 @EnableMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig {
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+        @Autowired
+        private UserDetailsService userDetailsService;
 
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
+        @Bean
+        CorsConfigurationSource corsConfigurationSource() {
+                CorsConfiguration configuration = new CorsConfiguration();
+                configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
+                configuration.setAllowedMethods(Arrays.asList("GET"));
+                UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+                source.registerCorsConfiguration("/**", configuration);
+                return source;
+        }
 
-    @Bean
-    public SecurityFilterChain configure(HttpSecurity http) throws Exception {
-        http
-                .cors(cors -> corsConfigurationSource())
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(antMatcher("/css/**")).permitAll()
-                        .requestMatchers(antMatcher("/api/**")).permitAll()
-                        .anyRequest().authenticated())
-                .formLogin(formlogin -> formlogin
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/index", true)
-                        .permitAll())
-                .logout(logout -> logout
-                        .permitAll());
-        return http.build();
-    }
+        @Bean
+        public SecurityFilterChain configure(HttpSecurity http) throws Exception {
+                http
+                                .cors(cors -> corsConfigurationSource())
+                                .authorizeHttpRequests(authorize -> authorize
+                                                .requestMatchers(antMatcher("/css/**")).permitAll()
+                                                .requestMatchers(antMatcher("/api/**")).permitAll()
+                                                .anyRequest().authenticated())
+                                .formLogin(formlogin -> formlogin
+                                                .loginPage("/login")
+                                                .defaultSuccessUrl("/index", true)
+                                                .permitAll())
+                                .logout(logout -> logout
+                                                .permitAll());
+                return http.build();
+        }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-    }
+        @Autowired
+        public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+                auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+        }
 
 }

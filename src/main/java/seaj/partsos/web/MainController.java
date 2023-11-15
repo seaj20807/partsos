@@ -18,10 +18,10 @@ public class MainController {
         return "index"; // index.html
     }
 
-    // Error page
-    @GetMapping("/error")
-    public String error() {
-        return "error"; // error.html
-    }
+    // // Error page
+    // @GetMapping("/error")
+    // public String error() {
+    // return "error"; // error.html
+    // }
 
 }

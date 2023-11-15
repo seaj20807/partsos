@@ -12,9 +12,9 @@
     <div>
         <form th:object="${plating}" th:action="@{/saveplating}" action="#" method="post">
             <label for="chemsymbol">Chemical Symbol:</label><br>
-            <input type="text" id="chemsymbol" th:field="*{platingId}" /><br>
+            <input type="text" id="chemsymbol" th:field="*{platingId}" required /><br>
             <label for="platemtrl">Material Name:</label><br>
-            <input type="text" id="platemtrl" th:field="*{platingMaterial}" /><br>
+            <input type="text" id="platemtrl" th:field="*{platingMaterial}" required /><br>
             <input type="submit" value="Add" class="btn btn-success" /><br>
             <br>
         </form>

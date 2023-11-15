@@ -23,7 +23,9 @@ public class Part {
     @NotBlank(message = "Name is mandatory")
     @Size(min = 2, max = 50, message = "Part ID must be between 2 and 50 characters")
     private String name;
+
     private Double surfaceArea;
+
     private String baseMaterial;
 
     @ManyToOne
@@ -33,8 +35,6 @@ public class Part {
 
     @OneToMany(mappedBy = "part")
     List<Process> processes;
-
-    // private Plating plating;
 
     public Part() {
     }
@@ -53,15 +53,6 @@ public class Part {
         this.baseMaterial = baseMaterial;
         this.supplier = supplier;
     }
-
-    // public Part(String partId, String name, Double surfaceArea, String
-    // baseMaterial, Plating plating) {
-    // this.partId = partId;
-    // this.name = name;
-    // this.surfaceArea = surfaceArea;
-    // this.baseMaterial = baseMaterial;
-    // this.plating = plating;
-    // }
 
     public String getPartId() {
         return partId;
@@ -87,10 +78,6 @@ public class Part {
         return processes;
     }
 
-    // public Plating getPlating() {
-    // return plating;
-    // }
-
     public void setPartId(String partId) {
         this.partId = partId;
     }
@@ -114,10 +101,6 @@ public class Part {
     public void setProcesses(List<Process> processes) {
         this.processes = processes;
     }
-
-    // public void setPlating(Plating plating) {
-    // this.plating = plating;
-    // }
 
     @Override
     public String toString() {

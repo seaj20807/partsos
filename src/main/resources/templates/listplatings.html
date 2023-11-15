@@ -19,10 +19,12 @@
             <td th:text="${plating.platingId}"></td>
             <td th:text="${plating.platingMaterial}"></td>
             <td><a th:href="@{/editplating/{id}(id=${plating.platingId})}" class="btn btn-success">Edit</a></td>
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deleteplating/{id}(id=${plating.platingId})}"
+                    class="btn btn-danger">Delete</a></td>
         </tr>
     </table>
     <br>
-    <a href="/addplating" class="btn btn-success">Add a plating</a><br>
+    <a href="/addplating" class="btn btn-success">Add</a><br>
     <br>
     <a href="/index" class="btn btn-danger">Home</a>
     </br>

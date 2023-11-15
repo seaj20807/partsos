@@ -13,14 +13,18 @@
         <form th:object="${part}" th:action="@{/savepart}" action="#" method="post">
             <label for="id">Id:</label><br>
             <input type="text" id="id" th:field="*{partId}" /><br>
+
             <label for="name">Name:</label><br>
-            <input type="text" id="name" th:field="*{name}" /><br>
+            <input type="text" id="name" th:field="*{name}" required /><br>
+
             <label for="srfcarea">Surface Area:</label><br>
             <input type="text" id="srfcarea" th:field="*{surfaceArea}" /><br>
+
             <label for="basemtrl">Base Material:</label><br>
             <input type="text" id="basemtrl" th:field="*{baseMaterial}" /><br>
+
             <label for="supplierlist">Supplier:</label>
-            <select id="supplierlist" th:field="*{supplier}" class="form-control">
+            <select id="supplierlist" th:field="*{supplier}" class="form-control" required>
                 <option value="default">Choose a supplier</option>
                 <option th:each="supplier : ${suppliers}" th:value="${supplier.supplierId}" th:text="${supplier.name}">
                 </option>

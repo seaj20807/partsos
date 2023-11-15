@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head>
+    <title>PartsOS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<body>
+    <h1>Part Search</h1>
+    <div>
+        <form th:action="@{/searchpart/id}" action="#" method="get">
+            <label for="partid">Search by Id:</label><br>
+            <input type="text" id="partId" name="partId" required /><br>
+            <input type="submit" value="Search" class="btn btn-success" /><br>
+        </form>
+        <form th:action="@{/searchpart/name}" action="#" method="get">
+            <label for="name">Search by Name:</label><br>
+            <input type="text" id="name" name="name" required /><br>
+            <input type="submit" value="Search" class="btn btn-success" /><br>
+        </form>
+        <form th:action="@{/searchpart/surfacearea}" action="#" method="get">
+            <label for="surfaceArea">Search by Surface Area:</label><br>
+            <input type="text" id="surfaceArea" name="surfaceArea" required /><br>
+            <input type="submit" value="Search" class="btn btn-success" /><br>
+        </form>
+        <form th:action="@{/searchpart/supplier}" action="#" method="get">
+            <label for="supplier">Search by Supplier:</label><br>
+            <input type="text" id="supplier" name="supplier" required /><br>
+            <input type="submit" value="Search" class="btn btn-success" /><br>
+        </form>
+        <br>
+        <a href="/listparts" class="btn btn-danger">Back</a><br>
+        <br>
+        <a href="/index" class="btn btn-danger">Home</a>
+    </div>
+</body>
+
+</html>

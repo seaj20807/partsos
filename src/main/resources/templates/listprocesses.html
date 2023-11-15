@@ -24,11 +24,12 @@
             <td th:text="${process.plating.platingId}"></td>
             <td th:text="${process.thickness}"></td>
             <td><a th:href="@{/editprocess/{id}(id=${process.processId})}" class="btn btn-success">Edit</a></td>
-            <td><a th:href="@{/deleteprocess/{id}(id=${process.processId})}" class="btn btn-danger">Delete</a></td>
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deleteprocess/{id}(id=${process.processId})}"
+                    class="btn btn-danger">Delete</a></td>
         </tr>
     </table>
     <br>
-    <a href="/addprocess" class="btn btn-success">Add a process</a><br>
+    <a href="/addprocess" class="btn btn-success">Add</a><br>
     <br>
     <a href="/index" class="btn btn-danger">Home</a>
     </br>

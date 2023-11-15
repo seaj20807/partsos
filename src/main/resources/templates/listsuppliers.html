@@ -23,10 +23,12 @@
             <td th:text="${supplier.phone}"></td>
             <td th:text="${supplier.email}"></td>
             <td><a th:href="@{/editsupplier/{id}(id=${supplier.supplierId})}" class="btn btn-success">Edit</a></td>
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deletesupplier/{id}(id=${supplier.supplierId})}"
+                    class="btn btn-danger">Delete</a></td>
         </tr>
     </table>
     <br>
-    <a href="/addsupplier" class="btn btn-success">Add a supplier</a><br>
+    <a href="/addsupplier" class="btn btn-success">Add</a><br>
     <br>
     <a href="/index" class="btn btn-danger">Home</a>
     </br>

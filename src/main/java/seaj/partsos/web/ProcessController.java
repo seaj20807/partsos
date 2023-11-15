@@ -1,6 +1,7 @@
 package seaj.partsos.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,7 +60,9 @@ public class ProcessController {
         return "redirect:/listprocesses"; // Redirect to endpoint /listprocesses.html
     }
 
+    // Delete an existing process from the database
     @GetMapping("/deleteprocess/{processId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteProcess(@PathVariable("processId") Long processId, Model model) {
         processRepository.deleteById(processId);
         return "redirect:/listprocesses"; // Redirect to endpoint /listprocesses.html
