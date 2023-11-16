@@ -15,4 +15,3 @@ FROM eclipse-temurin:17-jre-focal
 COPY --from=build /home/app/target/partsos-0.0.1-SNAPSHOT.jar /usr/local/lib/pkg.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/usr/local/lib/pkg.jar"]
-Where to find these images?
