@@ -10,12 +10,14 @@
 <body>
     <h1>Add a part</h1>
     <div>
-        <form th:object="${part}" th:action="@{/savepart}" action="#" method="post">
+        <form th:object="${part}" class="form-input" th:action="@{/addpart}" action="#" method="post">
             <label for="id">Id:</label><br>
             <input type="text" id="id" th:field="*{partId}" /><br>
+            <p th:if="${#fields.hasErrors('partId')}" class="error-message" th:errors="*{partId}">Id Error</p><br>
 
             <label for="name">Name:</label><br>
-            <input type="text" id="name" th:field="*{name}" required /><br>
+            <input type="text" id="name" th:field="*{name}" /><br>
+            <p th:if="${#fields.hasErrors('name')}" class="error-message" th:errors="*{name}">Name Error</p><br>
 
             <label for="srfcarea">Surface Area:</label><br>
             <input type="text" id="srfcarea" th:field="*{surfaceArea}" /><br>
@@ -25,10 +27,11 @@
 
             <label for="supplierlist">Supplier:</label>
             <select id="supplierlist" th:field="*{supplier}" class="form-control" required>
-                <option value="default">Choose a supplier</option>
+                <option value="">Choose a supplier</option>
                 <option th:each="supplier : ${suppliers}" th:value="${supplier.supplierId}" th:text="${supplier.name}">
                 </option>
             </select>
+
             <input type="submit" value="Add" class="btn btn-success" /><br>
             <br>
         </form>

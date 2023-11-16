@@ -7,11 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.validation.Valid;
 import seaj.partsos.domain.SupplierRepository;
 import seaj.partsos.domain.Part;
 import seaj.partsos.domain.PartRepository;
@@ -92,12 +95,23 @@ public class PartController {
         return "searchresults"; // listparts.html
     }
 
-    // Add a part
+    // Form for adding a part
     @GetMapping("/addpart")
-    public String addPart(Model model) {
+    public String addPartForm(Model model) {
         model.addAttribute("part", new Part());
         model.addAttribute("suppliers", supplierRepository.findAll());
         return "addpart"; // addpart.html
+    }
+
+    // Save a new part to the database
+    @PostMapping("/addpart")
+    public String addPart(@Valid @ModelAttribute Part part, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("suppliers", supplierRepository.findAll());
+            return "addpart"; // addpart.html
+        }
+        partRepository.save(part);
+        return "redirect:/listparts"; // Redirect to endpoint /listparts.html
     }
 
     // Edit a part
@@ -108,9 +122,13 @@ public class PartController {
         return "editpart"; // editpart.html
     }
 
-    // Save a new or edited part to the database
+    // Save an edited part to the database
     @PostMapping("/savepart")
-    public String savePart(Part part) {
+    public String savePart(@Valid @ModelAttribute Part part, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("suppliers", supplierRepository.findAll());
+            return "editpart"; // editpart.html
+        }
         partRepository.save(part);
         return "redirect:/listparts"; // Redirect to endpoint /listparts.html
     }

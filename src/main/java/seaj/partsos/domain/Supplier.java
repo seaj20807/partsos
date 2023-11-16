@@ -22,13 +22,15 @@ public class Supplier {
     private Long supplierId;
 
     @NotBlank(message = "Name is mandatory")
-    @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
+    @Size(min = 1, max = 50, message = "Name must be between 1 and 50 characters")
     private String name;
 
     @NotBlank(message = "Address is mandatory")
+    @Size(min = 2, max = 100, message = "Address must be between 2 and 100 characters")
     private String address;
 
     @NotBlank(message = "Phone is mandatory")
+    @Size(min = 2, max = 30, message = "Phone must be between 2 and 30 characters")
     private String phone;
 
     @NotBlank(message = "E-Mail is mandatory")

@@ -21,7 +21,7 @@ public class Part {
     private String partId;
 
     @NotBlank(message = "Name is mandatory")
-    @Size(min = 2, max = 50, message = "Part ID must be between 2 and 50 characters")
+    @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
     private String name;
 
     private Double surfaceArea;

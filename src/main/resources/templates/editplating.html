@@ -10,11 +10,16 @@
 <body>
     <h1>Edit a Plating</h1>
     <div>
-        <form th:object="${plating}" th:action="@{/saveplating}" action="#" method="post">
+        <form th:object="${plating}" class="form-input" th:action="@{/saveplating}" action="#" method="post">
             <label for="chemsymbol">Chemical Symbol:</label>
             <input type="text" id="chemsymbol" th:field="*{platingId}" class="form-control" />
+            <p th:if="${#fields.hasErrors('platingId')}" class="error-message" th:errors="*{platingId}">Id Error</p><br>
+
             <label for="platemtrl">Material Name:</label><br>
             <input type="text" id="platemtrl" th:field="*{platingMaterial}" /><br>
+            <p th:if="${#fields.hasErrors('platingMaterial')}" class="error-message" th:errors="*{platingMaterial}">
+                Plating Material Error</p><br>
+
             <input type="submit" value="Save" class="btn btn-success" /><br>
             <br>
         </form>

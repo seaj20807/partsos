@@ -10,29 +10,31 @@
 <body>
     <h1>Edit a Process</h1>
     <div>
-        <form th:object="${process}" th:action="@{/saveprocess}" action="#" method="post">
+        <form th:object="${process}" class="form-input" th:action="@{/saveprocess}" action="#" method="post">
             <label for="processid"></label>
             <input type="hidden" id="processid" th:field="*{processId}" class="form-control" />
+
             <label for="partlist">Part:</label><br>
-            <select id="partlist" th:field="*{part}" class="form-control">
-                <option value="default">Choose a part</option>
-                <option th:each="part : ${parts}" th:value="${parts.partId}"
+            <select id="partlist" th:field="*{part}" class="form-control" required>
+                <option th:each="part : ${parts}" th:value="${part.partId}"
                     th:text="${part.partId} + ', ' + ${part.name}">
                 </option>
             </select>
+
             <label for="platinglist">Plating:</label><br>
-            <select id="platinglist" th:field="*{plating}" class="form-control">
-                <option value="default">Choose a plating</option>
+            <select id="platinglist" th:field="*{plating}" class="form-control" required>
                 <option th:each="plating : ${platings}" th:value="${plating.platingId}"
                     th:text="${plating.platingId} + ', ' + ${plating.platingMaterial}">
                 </option>
             </select>
+
             <label for="thickness">Thickness (micrometers):</label><br>
-            <input type="text" id="thickness" th:field="*{thickness}" /><br>
+            <input type="number" id="thickness" th:field="*{thickness}" /><br>
+
             <input type="submit" value="Save" class="btn btn-success" /><br>
             <br>
         </form>
-        <a href="/listparts" class="btn btn-danger">Back</a><br>
+        <a href="/listprocesses" class="btn btn-danger">Back</a><br>
         <br>
         <a href="/index" class="btn btn-danger">Home</a>
     </div>

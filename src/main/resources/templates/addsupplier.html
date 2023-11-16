@@ -10,15 +10,24 @@
 <body>
     <h1>Add a supplier</h1>
     <div>
-        <form th:object="${supplier}" th:action="@{/savesupplier}" action="#" method="post">
+        <form th:object="${supplier}" class="form-input" th:action="@{/addsupplier}" action="#" method="post">
             <label for="name">Name:</label><br>
             <input type="text" id="name" th:field="*{name}" /><br>
+            <p th:if="${#fields.hasErrors('name')}" class="error-message" th:errors="*{name}">Name Error</p><br>
+
             <label for="address">Address:</label><br>
             <input type="text" id="address" th:field="*{address}" /><br>
+            <p th:if="${#fields.hasErrors('address')}" class="error-message" th:errors="*{address}">Address Error</p>
+            <br>
+
             <label for="phone">Phone:</label><br>
             <input type="text" id="phone" th:field="*{phone}" /><br>
+            <p th:if="${#fields.hasErrors('phone')}" class="error-message" th:errors="*{phone}">Phone Error</p><br>
+
             <label for="email">E-Mail:</label><br>
-            <input type="text" id="email" th:field="*{email}" /><br>
+            <input type="email" id="email" th:field="*{email}" /><br>
+            <p th:if="${#fields.hasErrors('email')}" class="error-message" th:errors="*{email}">E-Mail Error</p><br>
+
             <input type="submit" value="Add" class="btn btn-success" /><br>
             <br>
         </form>
